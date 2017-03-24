@@ -7,7 +7,7 @@
     {
         static void Main(string[] args)
         {
-            var a = new int[] { 2, 0, 1, 7 };
+            var a = new ulong[] { 2, 0, 1, 7 };
             var runner = new OperationRunner(a);
             foreach (var r in runner.Run())
             {

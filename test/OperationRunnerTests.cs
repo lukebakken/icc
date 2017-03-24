@@ -18,7 +18,7 @@
         [InlineData(16, "((2 \u00d7 (1 + 7)) - 0)")]
         public void OutputsExpectedExpression(int value, string expr)
         {
-            var ary = new int[] { 2, 0, 1, 7 };
+            var ary = new ulong[] { 2, 0, 1, 7 };
             var runner = new OperationRunner(ary);
             IEnumerable<OpResult> rslt = runner.Run();
             Assert.Contains(expr, rslt.Select(r => r.ToString()));

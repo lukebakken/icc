@@ -4,7 +4,7 @@
 
     public class Addition : BinaryOperation
     {
-        public Addition(int a, int b)
+        public Addition(Rational a, Rational b)
             : base(a, b)
         {
         }

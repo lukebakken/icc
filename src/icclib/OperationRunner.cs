@@ -3,12 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Microsoft.SolverFoundation.Common;
 
     public class OperationRunner
     {
-        private readonly IEnumerable<int> initialSet;
+        private readonly IEnumerable<ulong> initialSet;
 
-        public OperationRunner(IEnumerable<int> initialSet)
+        public OperationRunner(IEnumerable<ulong> initialSet)
         {
             if (initialSet == null)
             {
@@ -25,12 +26,17 @@
                 .OrderBy(r => r.Value);
         }
 
-        private IEnumerable<OpResult> RunOperations(IEnumerable<int> set)
+        private IEnumerable<OpResult> RunOperations(IEnumerable<ulong> set)
         {
             if (set.Count() == 1)
             {
                 var value = set.First();
                 yield return new OpResult(value, value.ToString());
+                if (value <= 20)
+                {
+                    var factorial = new Factorial(value);
+                    yield return factorial.Result;
+                }
             }
             else
             {
