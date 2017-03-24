@@ -20,7 +20,9 @@
 
         public IEnumerable<OpResult> Run()
         {
-            return RunOperations(initialSet).Where(r => r.Value.IsInteger() && r.Value >= 1 && r.Value <= 100).OrderBy(r => r.Value);
+            return RunOperations(initialSet)
+                .Where(r => r.Value.IsInteger() && r.Value >= 1 && r.Value <= 100)
+                .OrderBy(r => r.Value);
         }
 
         private IEnumerable<OpResult> RunOperations(IEnumerable<int> set)
