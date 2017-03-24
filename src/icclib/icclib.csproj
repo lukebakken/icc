@@ -34,6 +34,7 @@
   <ItemGroup>
     <Compile Include="Division.cs" />
     <Compile Include="Multiplication.cs" />
+    <Compile Include="OperationRunner.cs" />
     <Compile Include="Subtraction.cs" />
     <Compile Include="Addition.cs" />
     <Compile Include="Extensions.cs" />
