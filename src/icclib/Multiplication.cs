@@ -1,27 +1,19 @@
 ﻿namespace icclib
 {
-    public class Multiplication
+    public class Multiplication : BinaryOperation
     {
-        private readonly int value;
-        private readonly string repr;
+        public Multiplication(int a, int b) : base(a, b) { }
 
-        public Multiplication(int a, int b)
+        public Multiplication(OpResult a, OpResult b) : base(a, b) { }
+
+        protected override char Operator
         {
-            value = a * b;
-            repr = string.Format("({0} x {1})", a, b);
+            get { return '\u00d7'; }
         }
 
-        public int Value
+        protected override int Calculate(int a, int b)
         {
-            get
-            {
-                return value;
-            }
-        }
-
-        public override string ToString()
-        {
-            return repr;
+            return a * b;
         }
     }
 }

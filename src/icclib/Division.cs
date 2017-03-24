@@ -1,27 +1,19 @@
 ﻿namespace icclib
 {
-    public class Division
+    public class Division : BinaryOperation
     {
-        private readonly int value;
-        private readonly string repr;
+        public Division(int a, int b) : base(a, b) { }
 
-        public Division(int a, int b)
+        public Division(OpResult a, OpResult b) : base(a, b) { }
+
+        protected override char Operator
         {
-            value = a / b; // TODO FIXME not exact representation of value
-            repr = string.Format("({0} / {1})", a, b);
+            get { return '\u00f7'; }
         }
 
-        public int Value
+        protected override int Calculate(int a, int b)
         {
-            get
-            {
-                return value;
-            }
-        }
-
-        public override string ToString()
-        {
-            return repr;
+            return a / b;
         }
     }
 }

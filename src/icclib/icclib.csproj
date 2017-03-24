@@ -32,9 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BinaryOperation.cs" />
     <Compile Include="Division.cs" />
     <Compile Include="Multiplication.cs" />
     <Compile Include="OperationRunner.cs" />
+    <Compile Include="OpResult.cs" />
     <Compile Include="Subtraction.cs" />
     <Compile Include="Addition.cs" />
     <Compile Include="Extensions.cs" />

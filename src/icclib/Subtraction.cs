@@ -1,27 +1,19 @@
 ﻿namespace icclib
 {
-    public class Subtraction
+    public class Subtraction : BinaryOperation
     {
-        private readonly int value;
-        private readonly string repr;
+        public Subtraction(int a, int b) : base(a, b) { }
 
-        public Subtraction(int a, int b)
+        public Subtraction(OpResult a, OpResult b) : base(a, b) { }
+
+        protected override char Operator
         {
-            value = a - b;
-            repr = string.Format("({0} - {1})", a, b);
+            get { return '-'; }
         }
 
-        public int Value
+        protected override int Calculate(int a, int b)
         {
-            get
-            {
-                return value;
-            }
-        }
-
-        public override string ToString()
-        {
-            return repr;
+            return a - b;
         }
     }
 }

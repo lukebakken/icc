@@ -1,27 +1,25 @@
 ﻿namespace icclib
 {
-    public class Addition
+    public class Addition : BinaryOperation
     {
-        private readonly int value;
-        private readonly string repr;
-
         public Addition(int a, int b)
+            : base(a, b)
         {
-            value = a + b;
-            repr = string.Format("({0} + {1})", a, b);
         }
 
-        public int Value
+        public Addition(OpResult a, OpResult b)
+            : base(a, b)
         {
-            get
-            {
-                return value;
-            }
         }
 
-        public override string ToString()
+        protected override char Operator
         {
-            return repr;
+            get { return '+'; }
+        }
+
+        protected override int Calculate(int a, int b)
+        {
+            return a + b;
         }
     }
 }

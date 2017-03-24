@@ -37,7 +37,7 @@
             int a = 20;
             int b = 17;
             int value = 20 * 17;
-            const string repr = "(20 x 17)";
+            const string repr = "(20 \u00d7 17)";
 
             var op = new Multiplication(a, b);
             Assert.Equal(value, op.Value);
@@ -50,7 +50,7 @@
             int a = 20;
             int b = 17;
             int value = 20 / 17; // TODO FIXME not exact representation of value
-            const string repr = "(20 / 17)";
+            const string repr = "(20 \u00f7 17)";
 
             var op = new Division(a, b);
             Assert.Equal(value, op.Value);
