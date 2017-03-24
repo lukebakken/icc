@@ -20,7 +20,7 @@
 
         public IEnumerable<OpResult> Run()
         {
-            return RunOperations(initialSet).Where(r => r.Value >= 1).OrderBy(r => r.Value);
+            return RunOperations(initialSet).Where(r => r.Value.IsInteger() && r.Value >= 1 && r.Value <= 100).OrderBy(r => r.Value);
         }
 
         private IEnumerable<OpResult> RunOperations(IEnumerable<int> set)
@@ -52,7 +52,6 @@
                             var mult = new Multiplication(p0r, p1r);
                             yield return mult.Result;
 
-                            /*
                             if (p1r.Value != 0)
                             {
                                 var div = new Division(p0r, p1r);
@@ -64,7 +63,6 @@
                                 var div = new Division(p1r, p0r);
                                 yield return div.Result;
                             }
-                            */
                         }
                     }
                 }

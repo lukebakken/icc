@@ -1,8 +1,10 @@
 ﻿namespace icclib
 {
+    using Microsoft.SolverFoundation.Common;
+
     public class Subtraction : BinaryOperation
     {
-        public Subtraction(int a, int b) : base(a, b) { }
+        public Subtraction(Rational a, Rational b) : base(a, b) { }
 
         public Subtraction(OpResult a, OpResult b) : base(a, b) { }
 
@@ -11,7 +13,7 @@
             get { return '-'; }
         }
 
-        protected override int Calculate(int a, int b)
+        protected override Rational Calculate(Rational a, Rational b)
         {
             return a - b;
         }

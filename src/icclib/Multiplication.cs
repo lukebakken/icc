@@ -1,8 +1,10 @@
 ﻿namespace icclib
 {
+    using Microsoft.SolverFoundation.Common;
+
     public class Multiplication : BinaryOperation
     {
-        public Multiplication(int a, int b) : base(a, b) { }
+        public Multiplication(Rational a, Rational b) : base(a, b) { }
 
         public Multiplication(OpResult a, OpResult b) : base(a, b) { }
 
@@ -11,7 +13,7 @@
             get { return '\u00d7'; }
         }
 
-        protected override int Calculate(int a, int b)
+        protected override Rational Calculate(Rational a, Rational b)
         {
             return a * b;
         }

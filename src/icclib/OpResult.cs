@@ -1,13 +1,14 @@
 ﻿namespace icclib
 {
     using System;
+    using Microsoft.SolverFoundation.Common;
 
     public class OpResult
     {
-        private readonly int value;
+        private readonly Rational value;
         private readonly string repr;
 
-        public OpResult(int value, string repr)
+        public OpResult(Rational value, string repr)
         {
             this.value = value;
 
@@ -19,7 +20,7 @@
             this.repr = repr;
         }
 
-        public int Value
+        public Rational Value
         {
             get { return value; }
         }

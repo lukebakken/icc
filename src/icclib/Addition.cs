@@ -1,5 +1,7 @@
 ﻿namespace icclib
 {
+    using Microsoft.SolverFoundation.Common;
+
     public class Addition : BinaryOperation
     {
         public Addition(int a, int b)
@@ -17,7 +19,7 @@
             get { return '+'; }
         }
 
-        protected override int Calculate(int a, int b)
+        protected override Rational Calculate(Rational a, Rational b)
         {
             return a + b;
         }

@@ -1,6 +1,7 @@
 ﻿namespace Test
 {
     using icclib;
+    using Microsoft.SolverFoundation.Common;
     using Xunit;
 
     public class OperationTests
@@ -49,7 +50,7 @@
         {
             int a = 20;
             int b = 17;
-            int value = 20 / 17; // TODO FIXME not exact representation of value
+            Rational value = Rational.Get(20, 17);
             const string repr = "(20 \u00f7 17)";
 
             var op = new Division(a, b);

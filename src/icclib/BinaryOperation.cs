@@ -1,13 +1,14 @@
 ﻿namespace icclib
 {
     using System;
+    using Microsoft.SolverFoundation.Common;
 
     public abstract class BinaryOperation
     {
-        private readonly int value;
+        private readonly Rational value;
         private readonly string repr;
 
-        public BinaryOperation(int a, int b)
+        public BinaryOperation(Rational a, Rational b)
         {
             value = Calculate(a, b);
             repr = Repr(a, b);
@@ -34,7 +35,7 @@
             get { return new OpResult(value, repr); }
         }
 
-        public int Value
+        public Rational Value
         {
             get { return value; }
         }
@@ -44,7 +45,7 @@
             return repr;
         }
 
-        protected abstract int Calculate(int a, int b);
+        protected abstract Rational Calculate(Rational a, Rational b);
         protected abstract char Operator { get; }
 
         private string Repr(object a, object b)
