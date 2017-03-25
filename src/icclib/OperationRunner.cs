@@ -1,22 +1,25 @@
 ﻿namespace icclib
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.SolverFoundation.Common;
 
     public class OperationRunner
     {
-        private readonly IEnumerable<ulong> initialSet;
+        private readonly IEnumerable<IEnumerable<Rational>> initialSets;
         private readonly OperationRunnerOptions opts;
 
-        public OperationRunner(IEnumerable<ulong> initialSet, OperationRunnerOptions opts = null)
+        public OperationRunner(IEnumerable<IEnumerable<Rational>> initialSets, OperationRunnerOptions opts = null)
         {
-            if (initialSet == null)
+            if (initialSets == null)
             {
                 throw new ArgumentNullException("initialSet");
             }
 
-            this.initialSet = initialSet;
+            this.initialSets = initialSets;
 
             if (opts == null)
             {
@@ -30,17 +33,25 @@
 
         public IEnumerable<OpResult> Run()
         {
-            return RunOperations(initialSet)
-                .Where(r => r.Value.IsInteger() && r.Value >= 1 && r.Value <= 100)
-                .OrderBy(r => r.Value);
+            var bag = new ConcurrentBag<OpResult>();
+
+            Parallel.ForEach(initialSets, (set) =>
+            {
+                foreach (OpResult r in RunOperations(set).Where(r => r.Value.IsInteger() && r.Value >= 1 && r.Value <= 100))
+                {
+                    bag.Add(r);
+                }
+            });
+
+            return bag.OrderBy(opr => opr.Value);
         }
 
-        private IEnumerable<OpResult> RunOperations(IEnumerable<ulong> set)
+        private IEnumerable<OpResult> RunOperations(IEnumerable<Rational> set)
         {
             if (set.Count() == 1)
             {
                 var value = set.First();
-                yield return new OpResult(value, value.ToString());
+                yield return new OpResult(value, value.ToDouble().ToString());
                 if (opts.WithFactorials)
                 {
                     var factorial = new Factorial(value);

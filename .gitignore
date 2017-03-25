@@ -19,6 +19,7 @@ packages/
 test-results/
 TestResults/
 
+*.txt
 *.dll
 *.res
 *.il
