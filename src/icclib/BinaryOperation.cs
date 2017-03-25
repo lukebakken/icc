@@ -3,54 +3,37 @@
     using System;
     using Microsoft.SolverFoundation.Common;
 
-    public abstract class BinaryOperation
+    public abstract class BinaryOperation : Operation
     {
-        private readonly Rational value;
-        private readonly string repr;
-
         public BinaryOperation(Rational a, Rational b)
+            : base(a, b)
         {
-            value = Calculate(a, b);
-            repr = Repr(a, b);
         }
 
         public BinaryOperation(OpResult a, OpResult b)
+            : base(a, b)
         {
-            if (a == null)
-            {
-                throw new ArgumentNullException("a");
-            }
-
             if (b == null)
             {
                 throw new ArgumentNullException("b");
             }
-
-            value = Calculate(a.Value, b.Value);
-            repr = Repr(a, b);
         }
 
-        public OpResult Result
+        protected override bool GetIsAllowed(Rational _a, Rational _b)
         {
-            get { return new OpResult(value, repr); }
+            return true;
         }
 
-        public Rational Value
-        {
-            get { return value; }
-        }
-
-        public override string ToString()
-        {
-            return repr;
-        }
-
-        protected abstract Rational Calculate(Rational a, Rational b);
-        protected abstract char Operator { get; }
-
-        private string Repr(object a, object b)
+        protected override string GetRepr(object a, object b)
         {
             return string.Format("({0} {1} {2})", a, Operator, b);
         }
+
+        protected override Rational GetValue(Rational a, Rational b)
+        {
+            return Calculate(a, b);
+        }
+
+        protected abstract Rational Calculate(Rational a, Rational b);
     }
 }

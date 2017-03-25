@@ -17,5 +17,10 @@
         {
             return a / b;
         }
+
+        protected override bool GetIsAllowed(Rational a, Rational b)
+        {
+            return b != 0;
+        }
     }
 }

@@ -33,6 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Factorial.cs" />
+    <Compile Include="Operation.cs" />
+    <Compile Include="OperationRunnerOptions.cs" />
     <Compile Include="UnaryOperation.cs" />
     <Compile Include="BinaryOperation.cs" />
     <Compile Include="Division.cs" />

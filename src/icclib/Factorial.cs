@@ -20,8 +20,8 @@
             20397882081197443358640281739902897356800000000, 815915283247897734345611269596115894272000000000
             */
         };
-        private static readonly int max = Factorials.Length;
-        private static readonly string err_max = string.Format("factorials only supported on integer values up to {0}", max);
+        private static readonly int max = Factorials.Length - 1;
+        private static readonly string err_max = string.Format("factorials only supported on integer values from 0 to {0}", max);
 
         public Factorial(Rational a) : base(a)
         {
@@ -38,12 +38,19 @@
 
         protected override Rational Calculate(Rational a)
         {
-            if (a.IsInteger() && a <= max)
+            if (IsAllowed)
             {
                 return Factorials[(int)a];
             }
+            else
+            {
+                return default(Rational);
+            }
+        }
 
-            throw new InvalidOperationException(err_max);
+        protected override bool GetIsAllowed(Rational a, Rational b)
+        {
+            return a.IsInteger() && a >= 0 && a <= max;
         }
     }
 }
