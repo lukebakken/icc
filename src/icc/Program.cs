@@ -13,15 +13,30 @@
             uint total = 0;
             var opts = new OperationRunnerOptions(withFactorials: true);
 
-            var inputs = new List<Rational[]>();
+            var inputs = new List<Rational[]> { new Rational[] { 2, 0, 1, 7 } };
 
-            // TODO auto-generate this
-            inputs.Add(new Rational[] { 2, 0, 1, 7 });
+            /*
+             *  choose 2:
+             *  2 0
+             *  2 1
+             *  2 7
+             *  0 1
+             *  0 7
+             *  1 7
+             */
             inputs.Add(new Rational[] { 12, 70 });
             inputs.Add(new Rational[] { 17, 20 });
             inputs.Add(new Rational[] { 20, 17 });
             inputs.Add(new Rational[] { 20, 71 });
             inputs.Add(new Rational[] { 21, 70 });
+
+            /*
+             * choose 3:
+             *  2 0 1
+             *  2 0 7
+             *  2 1 7
+             *  0 1 7
+             */  
             inputs.Add(new Rational[] { 102, 7 });
             inputs.Add(new Rational[] { 120, 7 });
             inputs.Add(new Rational[] { 127, 0 });
